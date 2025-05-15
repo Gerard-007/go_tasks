@@ -10,7 +10,7 @@ func TestFindFactors(t *testing.T) {
 		input    []int
 		expected int
 	}{
-		{[]int{100, 36, 28, 12}, 6},
+		{[]int{10, 20, 30}, 10},
 		{[]int{1}, 1},
 	}
 
