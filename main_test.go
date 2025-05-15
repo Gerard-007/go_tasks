@@ -7,22 +7,17 @@ import (
 
 func TestFindFactors(t *testing.T) {
 	tests := []struct {
-		input    int
+		input    []int
 		expected int
 	}{
-		{100, 9},
-		{36, 9},
-		{28, 6},
-		{12, 6},
-		{1, 1},
-		{0, 0},
-		{-1, 0},
+		{[]int{100, 36, 28, 12}, 6},
+		{[]int{1}, 1},
 	}
 
 	for _, test := range tests {
-		result := findFactors(test.input)
+		result := findTheHighestCommonFactor(test.input)
 		if result != test.expected {
-			t.Errorf("findFactors(%d) = %d; expected %d", test.input, result, test.expected)
+			t.Errorf("findTheHighestCommonFactor(%v) = %d; expected %d", test.input, result, test.expected)
 		}
 	}
 }

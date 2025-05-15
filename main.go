@@ -6,22 +6,27 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello world")
-	fmt.Println("The highest factor of 100 is:", findFactors(100))
+	fmt.Println("The highest factor is:", findTheHighestCommonFactor([]int{100, 36, 28, 12}))
 }
 
-func findFactors(number int) int {
+func findTheHighestCommonFactor(numbers []int) int {
+	min := numbers[0]
+	for _, num := range numbers {
+		if num < min {
+			min = num
+		}
+	}
 	factors := []int{}
-	for i := 1; i*i <= number; i++ {
-		if number%i == 0 {
+	for i := 1; i*i <= min; i++ {
+		if min%i == 0 {
 			factors = append(factors, i)
-			if i != number/i {
-				factors = append(factors, number/i)
+			if i != min/i {
+				factors = append(factors, min/i)
 			}
 		}
 	}
 
 	sort.Ints(factors)
-	fmt.Println("Factors of", number, "are:", factors)
+	fmt.Println("Factors of", min, "are:", factors)
 	return len(factors)
 }
