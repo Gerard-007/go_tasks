@@ -2,31 +2,26 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func main() {
-	fmt.Println("The highest factor is:", findTheHighestCommonFactor([]int{100, 36, 28, 12}))
+	fmt.Println("The highest factor is:", findTheHighestCommonFactor([]int{10, 20, 30}))
 }
 
 func findTheHighestCommonFactor(numbers []int) int {
-	min := numbers[0]
-	for _, num := range numbers {
-		if num < min {
-			min = num
+	hcf := numbers[0]
+	for _, num := range numbers[1:] {
+		hcf = gcd(hcf, num)
+		if hcf == 1 {
+			break
 		}
 	}
-	factors := []int{}
-	for i := 1; i*i <= min; i++ {
-		if min%i == 0 {
-			factors = append(factors, i)
-			if i != min/i {
-				factors = append(factors, min/i)
-			}
-		}
-	}
+	return hcf
+}
 
-	sort.Ints(factors)
-	fmt.Println("Factors of", min, "are:", factors)
-	return len(factors)
+func gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
 }
